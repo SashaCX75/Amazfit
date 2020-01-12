@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchFace", "WatchFace\Watc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{EDD55D5D-9E80-451B-AC8A-0746BA6DC6E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchFace_PackUnpack", "WatchFace_PackUnpack\WatchFace_PackUnpack.csproj", "{C7B3530A-A779-437B-A55D-8518C07B3D03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug (unpack)|Any CPU = Debug (unpack)|Any CPU
@@ -97,6 +99,30 @@ Global
 		{EDD55D5D-9E80-451B-AC8A-0746BA6DC6E9}.Release|x64.Build.0 = Release|Any CPU
 		{EDD55D5D-9E80-451B-AC8A-0746BA6DC6E9}.Release|x86.ActiveCfg = Release|Any CPU
 		{EDD55D5D-9E80-451B-AC8A-0746BA6DC6E9}.Release|x86.Build.0 = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|Any CPU.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|ARM.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|ARM.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|x64.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|x64.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|x86.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug (unpack)|x86.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|ARM.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|ARM.Build.0 = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|x64.Build.0 = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7B3530A-A779-437B-A55D-8518C07B3D03}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
