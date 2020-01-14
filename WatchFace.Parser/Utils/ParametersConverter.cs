@@ -87,6 +87,9 @@ namespace WatchFace.Parser.Utils
                 if (!properties.ContainsKey(parameter.Id))
                 {
                     Logger.Error($"Parameter {parameter.Id} isn't supported for {currentType.Name}");
+                    ErrorCount.errorCount++;
+                    ErrorCount.errorStr = ErrorCount.errorStr + Environment.NewLine +
+                        ($"Error: Parameter {parameter.Id} isn't supported for {currentType.Name}");
                     return result;
                 }
                 //    throw new ArgumentException($"Parameter {parameter.Id} isn't supported for {currentType.Name}");
@@ -159,5 +162,11 @@ namespace WatchFace.Parser.Utils
 
             return result;
         }
+    }
+
+    public static class ErrorCount
+    {
+        public static int errorCount = 0;
+        public static string errorStr = "";
     }
 }

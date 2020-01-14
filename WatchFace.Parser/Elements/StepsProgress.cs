@@ -7,7 +7,7 @@ namespace WatchFace.Parser.Elements
     public class StepsProgress
     {
         [ParameterId(1)]
-        public Image GoalImage { get; set; }
+        public ImageSet Images1 { get; set; }
 
         [ParameterId(2)]
         public IconSet Sliced { get; set; }
@@ -15,7 +15,13 @@ namespace WatchFace.Parser.Elements
         [ParameterId(3)]
         public CircleScale Circle { get; set; }
 
+        [ParameterId(4)]
+        public ImageSet Images4 { get; set; }
+
         [ParameterId(5)]
+        public CircleScale Unknown5 { get; set; }
+
+        [ParameterId(6)]
         public ClockHand ClockHand { get; set; }
     }
 }

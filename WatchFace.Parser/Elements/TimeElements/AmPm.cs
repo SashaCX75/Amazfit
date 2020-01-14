@@ -12,10 +12,18 @@ namespace WatchFace.Parser.Elements.TimeElements
 
         [ParameterId(3)]
         [ParameterImageIndex]
-        public long ImageIndexAm { get; set; }
+        public long ImageIndexAMCN { get; set; }
 
         [ParameterId(4)]
         [ParameterImageIndex]
-        public long ImageIndexPm { get; set; }
+        public long ImageIndexPMCN { get; set; }
+
+        [ParameterId(5)]
+        [ParameterImageIndex]
+        public long ImageIndexAMEN { get; set; }
+
+        [ParameterId(6)]
+        [ParameterImageIndex]
+        public long ImageIndexPMEN { get; set; }
     }
 }

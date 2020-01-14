@@ -16,7 +16,7 @@ namespace WatchFace.Parser.Elements
         public IconSet Icons { get; set; }
 
         [ParameterId(4)]
-        public ClockHand ClockHand { get; set; }
+        public ClockHand Unknown4 { get; set; }
 
         [ParameterId(5)]
         public long? Unknown5 { get; set; }
@@ -25,6 +25,6 @@ namespace WatchFace.Parser.Elements
         public Image Percent { get; set; }
 
         [ParameterId(7)]
-        public CircleScale Circle { get; set; }
+        public CircleScale Scale { get; set; }
     }
 }

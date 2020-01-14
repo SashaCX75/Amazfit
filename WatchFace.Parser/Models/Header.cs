@@ -27,7 +27,7 @@ namespace WatchFace.Parser.Models
 
             Encoding.ASCII.GetBytes(Signature).CopyTo(buffer, 0);
             byte[] myB1 = new byte[1];
-            myB1[0] = 6;
+            myB1[0] = 0x06;
             myB1.CopyTo(buffer, 11);
             UnknownWrite.CopyTo(buffer, 16);
             //BitConverter.GetBytes(0x06).CopyTo(buffer, 11);

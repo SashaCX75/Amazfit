@@ -27,29 +27,35 @@ using System.Drawing.Imaging;
 
 namespace WatchFace_PackUnpack
 {
-    public static class CenterOffset
-    {
-        public static int X = 227;
-        public static int Y = 227;
-    }
-
-    public static class Model
-    {
-        public static byte[] modelByte = new byte[8] { 0x28, 0x00, 0x8c, 0xea, 0x00, 0x00, 0x01, 0xbc }; // gtr 47
-    }
-
-    public static class ColorType
-    {
-        public static int colorType = 1;
-    }
 
     public partial class Form1 : Form
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        PROGRAM_SETTINGS Program_Settings;
+        bool Load_Settings = false;
 
         public Form1()
         {
             InitializeComponent();
+
+            Program_Settings = new PROGRAM_SETTINGS();
+            try
+            {
+                if (File.Exists(Application.StartupPath + @"\Settings.json"))
+                {
+                    Program_Settings = JsonConvert.DeserializeObject<PROGRAM_SETTINGS>
+                                (File.ReadAllText(Application.StartupPath + @"\Settings.json"), new JsonSerializerSettings
+                                {
+                                    //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                    NullValueHandling = NullValueHandling.Ignore
+                                });
+                }
+                
+            }
+            catch (Exception)
+            {
+                //Logger.WriteLine("Ошибка чтения настроек " + ex);
+            }
         }
 
         private void button_unpack_Click(object sender, EventArgs e)
@@ -210,7 +216,7 @@ namespace WatchFace_PackUnpack
                         string path = Path.GetDirectoryName(fullPath);
                         //path = Path.Combine(path, fileNameOnly);
                         string newFullName_unp = Path.Combine(path, fileNameOnly + ".bin.unp");
-                        string newFullName_bin = Path.Combine(path, fileNameOnly + ".unp.bin");
+                        string newFullName_bin = Path.Combine(path, fileNameOnly + ".bin");
 
                         //MessageBox.Show(newFullName);
                         if (File.Exists(newFullName_unp))
@@ -236,7 +242,7 @@ namespace WatchFace_PackUnpack
 
         private static void UnpackWatchFace(string inputFileName)
         {
-            var outputDirectory = CreateOutputDirectory(inputFileName);
+           var outputDirectory = CreateOutputDirectory(inputFileName);
             var baseName = Path.GetFileNameWithoutExtension(inputFileName);
             SetupLogger(Path.Combine(outputDirectory, $"{baseName}.log"));
 
@@ -248,6 +254,14 @@ namespace WatchFace_PackUnpack
             new Extractor(reDescriptor).Extract(outputDirectory);
 
             var watchFace = ParseResources(reader);
+
+            if (ErrorCount.errorCount > 0)
+            {
+                MessageBox.Show("При распаковке циферблата были допущены ошибки (" + 
+                    ErrorCount.errorCount.ToString() + "):" + ErrorCount.errorStr);
+                ErrorCount.errorCount = 0;
+                ErrorCount.errorStr = "";
+            }
             if (watchFace == null) return;
 
             //GeneratePreviews(reader.Parameters, reader.Images, outputDirectory, baseName);
@@ -264,8 +278,8 @@ namespace WatchFace_PackUnpack
             string subPath = Application.StartupPath + @"\Watch_face\";
             if (!Directory.Exists(subPath)) Directory.CreateDirectory(subPath);
             string respackerPath = Application.StartupPath + @"\Res_PackerUnpacker\";
-            if (Is64Bit()) respackerPath = respackerPath + @"x64\resunpacker.exe";
-            else respackerPath = respackerPath + @"x86\resunpacker.exe";
+            if (Is64Bit()) respackerPath = respackerPath + @"x64\respacker.exe";
+            else respackerPath = respackerPath + @"x86\respacker.exe";
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             //openFileDialog.InitialDirectory = subPath;
@@ -299,7 +313,7 @@ namespace WatchFace_PackUnpack
                     if (File.Exists(newFullName))
                     {
                         double fileSize = (GetFileSizeMB(new FileInfo(newFullName)));
-                        if (fileSize > 1.5) MessageBox.Show("Размер несжатого файла превышает 1,5МБ.\r\n\r\n" + "Циферблат может не работать.",
+                        if (fileSize > 1.95) MessageBox.Show("Размер несжатого файла превышает 1,95МБ.\r\n\r\n" + "Циферблат может не работать.",
                             "Большой размер файла", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -316,7 +330,7 @@ namespace WatchFace_PackUnpack
                         path = Path.GetDirectoryName(newFullName);
                         //path = Path.Combine(path, fileNameOnly);
                         string newFullName_cmp = Path.Combine(path, fileNameOnly + ".bin.cmp");
-                        string newFullName_bin = Path.Combine(path, fileNameOnly + ".zip.bin");
+                        string newFullName_bin = Path.Combine(path, fileNameOnly + "_zip.bin");
                         if (File.Exists(newFullName_cmp))
                         {
                             File.Copy(newFullName_cmp, newFullName_bin, true);
@@ -604,8 +618,110 @@ namespace WatchFace_PackUnpack
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Load_Settings = true;
+            if (Program_Settings.Model_GTS)
+            {
+                radioButton_gts.Checked = Program_Settings.Model_GTS;
+            }
+            else if (Program_Settings.Model_GTR42)
+            {
+                radioButton_gtr42.Checked = Program_Settings.Model_GTR42;
+            }
+            else
+            {
+                radioButton_gtr47.Checked = Program_Settings.Model_GTR47;
+            }
+
+            if (Program_Settings.Color1) radioButton_color1.Checked = true;
+            else radioButton_color2.Checked = true;
+
+            checkBox_Watchface_Path.Checked = Program_Settings.CopyInWatchFace;
+            Load_Settings = false;
+            Apply_Settings();
+        }
+
+        private void Save_Settings()
+        {
+            if (Load_Settings) return;
+            Program_Settings.Model_GTR47 = radioButton_gtr47.Checked;
+            Program_Settings.Model_GTR42 = radioButton_gtr42.Checked;
+            Program_Settings.Model_GTS = radioButton_gts.Checked;
+
+            Program_Settings.Color1 = radioButton_color1.Checked;
+            Program_Settings.Color2 = radioButton_color2.Checked;
+
+            Program_Settings.CopyInWatchFace = checkBox_Watchface_Path.Checked;
+            string JSON_String = JsonConvert.SerializeObject(Program_Settings, Formatting.Indented, new JsonSerializerSettings
+            {
+                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            File.WriteAllText("Settings.json", JSON_String, Encoding.UTF8);
+        }
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            Save_Settings();
+            Apply_Settings();
+        }
+
+        private void Apply_Settings()
+        {
+            if (Program_Settings.Model_GTR47)
+            {
+                CenterOffset.X = 227;
+                CenterOffset.Y = 227;
+
+                Model.modelByte = new byte[8] { 0x28, 0x00, 0x8c, 0xea, 0x00, 0x00, 0x01, 0xbc }; // gtr 47
+            }
+            else if (Program_Settings.Model_GTR42)
+            {
+                CenterOffset.X = 195;
+                CenterOffset.Y = 195;
+
+                Model.modelByte = new byte[8] { 0x2a, 0x00, 0x72, 0xeb, 0x00, 0x00, 0x5c, 0xd3 }; // gtr 47
+            }
+            else if (Program_Settings.Model_GTS)
+            {
+                CenterOffset.X = 174;
+                CenterOffset.Y = 221;
+
+                Model.modelByte = new byte[8] { 0x2e, 0x00, 0xaa, 0xeb, 0x00, 0x00, 0x68, 0xf1 }; // gtr 47
+            }
+
+            if (Program_Settings.Color1) ColorType.colorType = 1;
+            else ColorType.colorType = 2;
+        }
+    }
 
 
 
+    public static class CenterOffset
+    {
+        public static int X = 227;
+        public static int Y = 227;
+    }
+
+    public static class Model
+    {
+        public static byte[] modelByte = new byte[8] { 0x28, 0x00, 0x8c, 0xea, 0x00, 0x00, 0x01, 0xbc }; // gtr 47
+    }
+
+    public static class ColorType
+    {
+        public static int colorType = 1;
+    }
+
+    class PROGRAM_SETTINGS
+    {
+        public bool Model_GTR47 = true;
+        public bool Model_GTR42 = false;
+        public bool Model_GTS = false;
+
+        public bool Color1 = true;
+        public bool Color2 = false;
+        public bool CopyInWatchFace = true;
     }
 }

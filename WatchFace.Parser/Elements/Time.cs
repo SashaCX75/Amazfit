@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using WatchFace.Parser.Attributes;
+using WatchFace.Parser.Elements.BasicElements;
 using WatchFace.Parser.Elements.TimeElements;
 using WatchFace.Parser.JsonConverters;
 
@@ -25,5 +26,14 @@ namespace WatchFace.Parser.Elements
 
         [ParameterId(9)]
         public long? Unknown9 { get; set; }
+
+        [ParameterId(10)]
+        public Image Delimiter { get; set; }
+
+        [ParameterId(11)]
+        public Image Delimiter2 { get; set; }
+
+        [ParameterId(12)]
+        public Pm Pm { get; set; }
     }
 }

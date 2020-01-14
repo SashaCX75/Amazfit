@@ -33,12 +33,12 @@
             this.radioButton_color2 = new System.Windows.Forms.RadioButton();
             this.radioButton_color1 = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButton_gts = new System.Windows.Forms.RadioButton();
             this.radioButton_gtr42 = new System.Windows.Forms.RadioButton();
             this.radioButton_gtr47 = new System.Windows.Forms.RadioButton();
             this.checkBox_Watchface_Path = new System.Windows.Forms.CheckBox();
             this.button_unpack = new System.Windows.Forms.Button();
             this.button_pack = new System.Windows.Forms.Button();
-            this.radioButton_gts = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,7 @@
             this.radioButton_color2.TabIndex = 1;
             this.radioButton_color2.Text = "Цветовая схема 2";
             this.radioButton_color2.UseVisualStyleBackColor = true;
+            this.radioButton_color2.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButton_color1
             // 
@@ -73,6 +74,7 @@
             this.radioButton_color1.TabStop = true;
             this.radioButton_color1.Text = "Цветовая схема 1";
             this.radioButton_color1.UseVisualStyleBackColor = true;
+            this.radioButton_color1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // panel2
             // 
@@ -84,6 +86,17 @@
             this.panel2.Size = new System.Drawing.Size(200, 26);
             this.panel2.TabIndex = 1;
             // 
+            // radioButton_gts
+            // 
+            this.radioButton_gts.AutoSize = true;
+            this.radioButton_gts.Location = new System.Drawing.Point(142, 4);
+            this.radioButton_gts.Name = "radioButton_gts";
+            this.radioButton_gts.Size = new System.Drawing.Size(47, 17);
+            this.radioButton_gts.TabIndex = 4;
+            this.radioButton_gts.Text = "GTS";
+            this.radioButton_gts.UseVisualStyleBackColor = true;
+            this.radioButton_gts.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
             // radioButton_gtr42
             // 
             this.radioButton_gtr42.AutoSize = true;
@@ -93,6 +106,7 @@
             this.radioButton_gtr42.TabIndex = 3;
             this.radioButton_gtr42.Text = "GTR 42";
             this.radioButton_gtr42.UseVisualStyleBackColor = true;
+            this.radioButton_gtr42.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButton_gtr47
             // 
@@ -105,6 +119,7 @@
             this.radioButton_gtr47.TabStop = true;
             this.radioButton_gtr47.Text = "GTR 47";
             this.radioButton_gtr47.UseVisualStyleBackColor = true;
+            this.radioButton_gtr47.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // checkBox_Watchface_Path
             // 
@@ -116,6 +131,7 @@
             this.checkBox_Watchface_Path.TabIndex = 2;
             this.checkBox_Watchface_Path.Text = "Помещать распакованный циферблат в папку \"WatchFace\"";
             this.checkBox_Watchface_Path.UseVisualStyleBackColor = true;
+            this.checkBox_Watchface_Path.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // button_unpack
             // 
@@ -137,16 +153,6 @@
             this.button_pack.UseVisualStyleBackColor = true;
             this.button_pack.Click += new System.EventHandler(this.button_pack_Click);
             // 
-            // radioButton_gts
-            // 
-            this.radioButton_gts.AutoSize = true;
-            this.radioButton_gts.Location = new System.Drawing.Point(142, 4);
-            this.radioButton_gts.Name = "radioButton_gts";
-            this.radioButton_gts.Size = new System.Drawing.Size(47, 17);
-            this.radioButton_gts.TabIndex = 4;
-            this.radioButton_gts.Text = "GTS";
-            this.radioButton_gts.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,11 +164,13 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Распаковка/упаковка циферблатов";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

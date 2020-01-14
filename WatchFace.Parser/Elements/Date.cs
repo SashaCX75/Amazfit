@@ -17,5 +17,11 @@ namespace WatchFace.Parser.Elements
 
         [ParameterId(4)]
         public Coordinates Unknown4 { get; set; }
+
+        [ParameterId(5)]
+        public Year Year { get; set; }
+
+        [ParameterId(6)]
+        public IconSet WeekDaySquares { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace WatchFace.Parser.Elements
         [ParameterId(2)]
         public Temperature Temperature { get; set; }
 
-        [ParameterId(3)]
-        public AirPollution AirPollution { get; set; }
+        //[ParameterId(3)]
+        //public AirPollution AirPollution { get; set; }
     }
 }

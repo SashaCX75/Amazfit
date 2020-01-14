@@ -62,6 +62,11 @@
     <Compile Include="Elements\Activity.cs" />
     <Compile Include="Elements\ActivityElements\Distance.cs" />
     <Compile Include="Elements\ActivityElements\FormattedNumber.cs" />
+    <Compile Include="Elements\BasicElements\IconSet.cs" />
+    <Compile Include="Elements\BasicElements\Sector.cs" />
+    <Compile Include="Elements\DateElements\Year.cs" />
+    <Compile Include="Elements\DateElements\OneLineYear.cs" />
+    <Compile Include="Elements\DaysProgress.cs" />
     <Compile Include="Elements\AnalogDialFace.cs" />
     <Compile Include="Elements\Background.cs" />
     <Compile Include="Elements\BasicElements\CircleScale.cs" />
@@ -82,6 +87,7 @@
     <Compile Include="Elements\StepsProgress.cs" />
     <Compile Include="Elements\Status.cs" />
     <Compile Include="Elements\StatusElements\Switch.cs" />
+    <Compile Include="Elements\TimeElements\Pm.cs" />
     <Compile Include="Elements\UnknownType14.cs" />
     <Compile Include="Elements\Time.cs" />
     <Compile Include="Elements\TimeElements\AmPm.cs" />
@@ -92,6 +98,7 @@
     <Compile Include="Elements\WeatherElements\OneLineTemperature.cs" />
     <Compile Include="Elements\WeatherElements\SeparateTemperature.cs" />
     <Compile Include="Elements\WeatherElements\Temperature.cs" />
+    <Compile Include="Elements\WeatherElements\TemperatureSymbols.cs" />
     <Compile Include="Elements\WeatherElements\TemperatureNumber.cs" />
     <Compile Include="Elements\WeatherElements\TodayTemperature.cs" />
     <Compile Include="Elements\WeatherElements\WeatherIcon.cs" />

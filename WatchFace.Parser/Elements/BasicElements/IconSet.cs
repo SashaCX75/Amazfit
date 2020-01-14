@@ -3,14 +3,14 @@ using WatchFace.Parser.Attributes;
 
 namespace WatchFace.Parser.Elements.BasicElements
 {
-    public class Scale
+    public class IconSet
     {
         [ParameterId(1)]
         [ParameterImageIndex]
-        public long StartImageIndex { get; set; }
+        public long ImageIndex { get; set; }
 
         [ParameterId(2)]
         [ParameterImagesCount]
-        public List<Coordinates> Segments { get; set; }
+        public List<Coordinates> Coordinates { get; set; }
     }
 }

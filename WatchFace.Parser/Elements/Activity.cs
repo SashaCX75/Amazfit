@@ -38,5 +38,26 @@ namespace WatchFace.Parser.Elements
 
         [ParameterId(7)]
         public Image StarImage { get; set; }
+
+        [ParameterId(8)]
+        public Image CaloriesIcon { get; set; } // нет данных 
+
+        [ParameterId(9)]
+        public Image CircleRange { get; set; } // нет данных
+
+        [ParameterId(11)]
+        public CircleScale Goal2 { get; set; } // нет данных
+
+        [ParameterId(12)]
+        public IconSet ColouredSquares { get; set; } // нет данных
+
+        [ParameterId(13)]
+        public long NoDataImageIndex { get; set; } // нет данных
+
+        //[ParameterId(14)]
+        //public IconSet StepsSquaresUnknown { get; set; } // нет данных
+
+        [ParameterId(15)]
+        public long CaloriesTextualIcon { get; set; } // нет данных
     }
 }

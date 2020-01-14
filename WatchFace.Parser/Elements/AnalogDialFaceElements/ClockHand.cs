@@ -19,9 +19,13 @@ namespace WatchFace.Parser.Elements.AnalogDialFaceElements
         public Coordinates CenterOffset { get; set; }
 
         [ParameterId(4)]
-        public List<Coordinates> Shape { get; set; }
+        public Coordinates Shape { get; set; }
+        //public List<Coordinates> Shape { get; set; }
 
         [ParameterId(5)]
         public Image Image { get; set; }
+
+        [ParameterId(6)]
+        public Sector Sector { get; set; }
     }
 }

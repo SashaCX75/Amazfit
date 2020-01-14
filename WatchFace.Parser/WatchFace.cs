@@ -34,5 +34,8 @@ namespace WatchFace.Parser
 
         [ParameterId(14)]
         public UnknownType14 Unknown14 { get; set; }
+
+        [ParameterId(15)]
+        public DaysProgress DaysProgress { get; set; }
     }
 }

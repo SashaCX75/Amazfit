@@ -6,6 +6,7 @@ using Resources.Models;
 using WatchFace.Parser.Models;
 using WatchFace.Parser;
 using Header = WatchFace.Parser.Models.Header;
+using System;
 
 namespace WatchFace.Parser
 {
@@ -47,7 +48,7 @@ namespace WatchFace.Parser
             foreach (var encodedParameter in encodedParameters)
             {
                 var encodedParameterId = encodedParameter.Key;
-                var encodedParameterLength = encodedParameter.Value.Length;
+                var encodedParameterLength = (Int16)encodedParameter.Value.Length;
                 parametersPositions.Add(new Parameter(encodedParameterId, new List<Parameter>
                 {
                     new Parameter(1, offset),
@@ -68,10 +69,12 @@ namespace WatchFace.Parser
             Logger.Trace("Writing header...");
             //byte[] modelByte = new byte[8] { 0x28, 0x00, 0x8c, 0xea, 0x00, 0x00, 0x01, 0xbc };
             byte[] modelByte = Model.modelByte;
+            //int m = (int)offset % 4;
             var header = new Header
             {
                 ParametersSize = (uint) encodedParametersPositions.Length,
-                Unknown = (uint)(offset-8),
+                //Unknown = (uint)(offset - 8),
+                Unknown = (uint)(offset),
                 //Unknown = 0x159, // Maybe some kind of layers (the bigger number needed for more complex watch faces)
                 UnknownWrite = modelByte
             };
@@ -88,6 +91,12 @@ namespace WatchFace.Parser
                 stream.Seek(0, SeekOrigin.Begin);
                 stream.WriteTo(_stream);
             }
+
+            //while (m > 0)
+            //{
+            //    _stream.WriteByte(0xff);
+            //    m--;
+            //}
             Logger.Trace("Writing images...");
             new Resources.Writer(_stream).Write(_images, ColorType.colorType);
         }

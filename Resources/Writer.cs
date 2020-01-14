@@ -44,9 +44,27 @@ namespace Resources
                 encodedResources[i] = encodedImage;
             }
 
+            //_stream.WriteByte(3);
+            //_stream.WriteByte(3);
+            //_stream.WriteByte(3);
+            long s = _stream.Position % 4;
+            s = 4 - s;
+            for (int i = 0; i < offsetsTable.Length; i=i+4)
+            {
+                offsetsTable[i] = (byte)(offsetsTable[i] + s);
+            }
             Logger.Trace("Writing resources offsets table");
             _stream.Write(offsetsTable, 0, offsetsTable.Length);
 
+            while (s > 0)
+            {
+                _stream.WriteByte(0xff);
+                s--;
+            }
+
+            //_stream.WriteByte(3);
+            //_stream.WriteByte(3);
+            //_stream.WriteByte(3);
             Logger.Debug("Writing resources");
             foreach (var encodedImage in encodedResources)
             {
