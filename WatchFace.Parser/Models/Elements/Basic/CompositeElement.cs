@@ -14,8 +14,11 @@ namespace WatchFace.Parser.Models.Elements
 
         public CompositeElement(Parameter parameter, Element parent, string name = null) : base(parameter, parent, name)
         {
-            foreach (var parameterChild in parameter.Children)
-                Children.Add(CreateChildForParameter(parameterChild));
+            if (parameter.Children != null)
+            {
+                foreach (var parameterChild in parameter.Children)
+                    Children.Add(CreateChildForParameter(parameterChild)); 
+            }
         }
 
         public List<Element> Children { get; } = new List<Element>();

@@ -31,7 +31,7 @@ namespace WatchFace.Parser.Models
         public int BatteryLevel { get; set; } = 67;
         public bool Bluetooth { get; set; } = true;
         public bool Unlocked { get; set; } = true;
-        public bool DoNotDisturb { get; set; }
-        public bool Alarm { get; set; }
+        public bool DoNotDisturb { get; set; } = true;
+        public bool Alarm { get; set; } = true;
     }
 }

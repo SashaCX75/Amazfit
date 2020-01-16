@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using WatchFace.Parser.Helpers;
 using WatchFace.Parser.Interfaces;
 
@@ -15,32 +16,33 @@ namespace WatchFace.Parser.Models.Elements
 
         public void Draw(Graphics drawer, Bitmap[] resources, WatchState state)
         {
-            var steps = 0;
-            var decimals = 0;
-            if (state.Steps >= 10000)
-            {
-                steps = state.Steps / 10000;
-                decimals = state.Steps % 10000;
-            }
-            else if (state.Steps >= 1000)
-            {
-                steps = state.Steps / 1000;
-                decimals = state.Steps % 1000;
-            }
-            else if (state.Steps >= 100)
-            {
-                steps = state.Steps / 100;
-                decimals = state.Steps % 100;
-            }
-            else if (state.Steps >= 10)
-            {
-                steps = state.Steps / 10;
-                decimals = state.Steps % 10;
-            }
+            //var steps = 0;
+            //var decimals = 0;
+            //if (state.Steps >= 10000)
+            //{
+            //    steps = state.Steps / 10000;
+            //    decimals = state.Steps - steps * 10000;
+            //}
+            //else if (state.Steps >= 1000)
+            //{
+            //    steps = state.Steps / 1000;
+            //    decimals = state.Steps - steps * 1000;
+            //}
+            //else if (state.Steps >= 100)
+            //{
+            //    steps = state.Steps / 100;
+            //    decimals = state.Steps - steps * 100;
+            //}
+            //else if (state.Steps >= 10)
+            //{
+            //    steps = state.Steps / 10;
+            //    decimals = state.Steps - state.Steps * 10;
+            //}
 
-            var images = Number.GetImagesForNumber(resources, steps);
+            //var images = Number.GetImagesForNumber(resources, steps);
+            var images = new List<Bitmap>();
             //images.Add(resources[DecimalPointImageIndex]);
-            images.AddRange(Number.GetImagesForNumber(resources, decimals));
+            images.AddRange(Number.GetImagesForNumber(resources, state.Steps));
             if (SuffixMilesImageIndex>0) images.Add(resources[SuffixMilesImageIndex]);
 
             DrawerHelper.DrawImages(drawer, images, (int)Number.Spacing, Number.Alignment, Number.GetBox());

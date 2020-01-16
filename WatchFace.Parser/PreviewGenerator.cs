@@ -35,8 +35,11 @@ namespace WatchFace.Parser
             }
         }
 
-        public static Image CreateImage(IEnumerable<Parameter> descriptor, Bitmap[] images, WatchState state)
+        public static Image CreateImage(IEnumerable<Parameter> descriptor, Bitmap[] images, WatchState state, 
+            int CenterOffsetX, int CenterOffsetY)
         {
+            CenterOffset.X = CenterOffsetX;
+            CenterOffset.Y = CenterOffsetY;
             var previewWatchFace = new Models.Elements.WatchFace(descriptor);
             return CreateFrame(previewWatchFace, images, state);
         }

@@ -8,6 +8,10 @@ namespace WatchFace.Parser.Elements.WeatherElements
         //[ParameterId(1)]
         //public Number Number { get; set; }
 
+        [ParameterId(1)]
+        [ParameterImageIndex]
+        public long? Unknown0800 { get; set; }
+
         [ParameterId(2)]
         [ParameterImageIndex]
         public long? MinusImageIndex { get; set; }
@@ -16,7 +20,7 @@ namespace WatchFace.Parser.Elements.WeatherElements
         [ParameterImageIndex]
         public long? DegreesImageIndex { get; set; }
 
-        [ParameterId(3)]
+        [ParameterId(4)]
         [ParameterImageIndex]
         public long? NoDataImageIndex { get; set; }
     }

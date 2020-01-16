@@ -137,7 +137,7 @@
             // 
             this.button_unpack.Location = new System.Drawing.Point(12, 135);
             this.button_unpack.Name = "button_unpack";
-            this.button_unpack.Size = new System.Drawing.Size(75, 23);
+            this.button_unpack.Size = new System.Drawing.Size(90, 23);
             this.button_unpack.TabIndex = 3;
             this.button_unpack.Text = "Распаковать";
             this.button_unpack.UseVisualStyleBackColor = true;
@@ -145,9 +145,9 @@
             // 
             // button_pack
             // 
-            this.button_pack.Location = new System.Drawing.Point(137, 135);
+            this.button_pack.Location = new System.Drawing.Point(122, 135);
             this.button_pack.Name = "button_pack";
-            this.button_pack.Size = new System.Drawing.Size(75, 23);
+            this.button_pack.Size = new System.Drawing.Size(90, 23);
             this.button_pack.TabIndex = 4;
             this.button_pack.Text = "Запаковать";
             this.button_pack.UseVisualStyleBackColor = true;

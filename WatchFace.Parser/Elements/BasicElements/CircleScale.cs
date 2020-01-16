@@ -33,5 +33,9 @@ namespace WatchFace.Parser.Elements.BasicElements
 
         [ParameterId(9)]
         public long Flatness { get; set; }
+
+        [ParameterId(10)]
+        [ParameterImageIndex]
+        public long ImageIndex { get; set; }
     }
 }

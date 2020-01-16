@@ -231,9 +231,12 @@ namespace WatchFace_PackUnpack
                             }
                         }
                     }
+
                     catch
                     {
                         // сюда писать команды при ошибке вызова 
+                        MessageBox.Show("При распаковке произошла неопознанная ошибка.", "Ошибка",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -258,9 +261,15 @@ namespace WatchFace_PackUnpack
             if (ErrorCount.errorCount > 0)
             {
                 MessageBox.Show("При распаковке циферблата были допущены ошибки (" + 
-                    ErrorCount.errorCount.ToString() + "):" + ErrorCount.errorStr);
+                    ErrorCount.errorCount.ToString() + "):" + ErrorCount.errorStr, 
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ErrorCount.errorCount = 0;
                 ErrorCount.errorStr = "";
+            }
+            else
+            {
+                MessageBox.Show("Циферблат распакован",
+                    "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (watchFace == null) return;
 
@@ -478,7 +487,9 @@ namespace WatchFace_PackUnpack
             Logger.Debug("Generating previews...");
 
             var states = GetPreviewStates();
-            var staticPreview = PreviewGenerator.CreateImage(parameters, images, new WatchState());
+
+            var staticPreview = PreviewGenerator.CreateImage(parameters, images, new WatchState(),
+                CenterOffset.X, CenterOffset.Y);
             staticPreview.Save(Path.Combine(outputDirectory, $"{baseName}_static.png"), ImageFormat.Png);
 
             var previewImages = PreviewGenerator.CreateAnimation(parameters, images, states,

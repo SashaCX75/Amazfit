@@ -36,9 +36,9 @@ namespace WatchFace.Parser.Models.Elements
         {
             switch (parameter.Id)
             {
-                case 1:
-                    Number = new NumberElement(parameter, this);
-                    return Number;
+                //case 1:
+                //    Number = new NumberElement(parameter, this);
+                    //return Number;
                 case 2:
                     MinusImageIndex = parameter.Value;
                     return new ValueElement(parameter, this);
