@@ -36,6 +36,6 @@ namespace WatchFace.Parser.Elements.BasicElements
 
         [ParameterId(10)]
         [ParameterImageIndex]
-        public long ImageIndex { get; set; }
+        public long? ImageIndex { get; set; }
     }
 }

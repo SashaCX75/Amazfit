@@ -7,6 +7,8 @@ using System.Linq;
 using Resources.Models;
 using WatchFace.Parser.Attributes;
 using Image = Resources.Models.Image;
+using WatchFace.Parser.Elements.AnimationElements;
+using WatchFace.Parser.Elements;
 
 namespace WatchFace.Parser.Utils
 {
@@ -53,7 +55,6 @@ namespace WatchFace.Parser.Utils
                     throw new ArgumentException(
                         $"Property {propertyInfo.Name} can't have both ParameterImageIndexAttribute and ParameterImagesCountAttribute"
                     );
-
                 if (propertyType == typeof(long) || propertyType.IsGenericType &&
                     (propertyType.GetGenericTypeDefinition() == typeof(List<>) ||
                      propertyType.GetGenericTypeDefinition() == typeof(Nullable<>)))
@@ -96,6 +97,21 @@ namespace WatchFace.Parser.Utils
                         throw new ArgumentException(
                             $"Property {propertyInfo.Name} with type {propertyType.Name} can't have ParameterImageIndexAttribute or ParameterImagesCountAttribute"
                         );
+                    }
+                }
+                if (propertyInfo.Name == "MotiomAnimation")
+                {
+                    //Animation qwer = propertyValue as Animation;
+                    List<MotiomAnimation> www = propertyValue as List<MotiomAnimation>;
+                    foreach (var kv2 in www)
+                    {
+                        //long imageIndex = kv2.ImageIndex;
+                        //lastImageIndexValue = imageIndex;
+                        //var mappedIndex = LoadImage(imageIndex);
+                        //System.Reflection.PropertyInfo newpropertyInfo = propertyInfo;
+                        //propertyInfo = kv2.GetType().GetProperty("ImageIndex");
+                        //propertyInfo.SetValue(newpropertyInfo[0], mappedIndex, null);
+                        Process(kv2, currentPath);
                     }
                 }
             }

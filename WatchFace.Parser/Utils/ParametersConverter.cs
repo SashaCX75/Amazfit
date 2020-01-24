@@ -100,6 +100,7 @@ namespace WatchFace.Parser.Utils
                 if (propertyType == typeof(long) ||
                     propertyType == typeof(TextAlignment) ||
                     propertyType == typeof(bool) ||
+                    propertyType == typeof(byte) ||
                     propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
                 {
                     Logger.Trace("{0} '{1}': {2}", currentPath, propertyInfo.Name, parameter.Value);

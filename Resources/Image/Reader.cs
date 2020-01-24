@@ -198,13 +198,23 @@ namespace Resources.Image
                     var rowBytes = _reader.ReadBytes(_rowLengthInBytes);
                     for (var x = 0; x < _width; x++)
                     {
-                        //var r = rowBytes[x * 4];
-                        //var g = rowBytes[x * 4 + 1];
-                        //var b = rowBytes[x * 4 + 2];
-                        var b = rowBytes[x * 4];
-                        var g = rowBytes[x * 4 + 1];
-                        var r = rowBytes[x * 4 + 2];
-                        var alpha = rowBytes[x * 4 + 3];
+                        byte b = 0;
+                        byte g = 0;
+                        byte r = 0;
+                        byte alpha = 0;
+                        try
+                        {
+                            //var r = rowBytes[x * 4];
+                            //var g = rowBytes[x * 4 + 1];
+                            //var b = rowBytes[x * 4 + 2];
+                             b = rowBytes[x * 4];
+                             g = rowBytes[x * 4 + 1];
+                             r = rowBytes[x * 4 + 2];
+                             alpha = rowBytes[x * 4 + 3];
+                        }
+                        catch (System.Exception)
+                        {
+                        }
                         var color = Color.FromArgb(alpha, r, g, b);
                         context.SetPixel(x, y, color);
                     }

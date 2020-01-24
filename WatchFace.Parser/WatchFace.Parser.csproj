@@ -60,10 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Elements\Activity.cs" />
+    <Compile Include="Elements\ActivityElements\PulseGraph.cs" />
+    <Compile Include="Elements\ActivityElements\CaloriesGraph.cs" />
     <Compile Include="Elements\ActivityElements\Distance.cs" />
     <Compile Include="Elements\ActivityElements\FormattedNumber.cs" />
+    <Compile Include="Elements\AnimationElements\AnimationImage.cs" />
+    <Compile Include="Elements\AnimationElements\StaticAnimation.cs" />
+    <Compile Include="Elements\AnimationElements\MotiomAnimation.cs" />
     <Compile Include="Elements\BasicElements\IconSet.cs" />
     <Compile Include="Elements\BasicElements\Sector.cs" />
+    <Compile Include="Elements\Animation.cs" />
     <Compile Include="Elements\DateElements\Year.cs" />
     <Compile Include="Elements\DateElements\OneLineYear.cs" />
     <Compile Include="Elements\DaysProgress.cs" />

@@ -58,6 +58,12 @@ namespace WatchFace.Parser.Elements
         //public IconSet StepsSquaresUnknown { get; set; } // нет данных
 
         [ParameterId(15)]
-        public long CaloriesTextualIcon { get; set; } // нет данных
+        public long? CaloriesTextualIcon { get; set; } // нет данных
+
+        [ParameterId(17)]
+        public CaloriesGraph CaloriesGraph { get; set; } // нет данных
+
+        [ParameterId(18)]
+        public PulseGraph PulseGraph { get; set; } // нет данных
     }
 }

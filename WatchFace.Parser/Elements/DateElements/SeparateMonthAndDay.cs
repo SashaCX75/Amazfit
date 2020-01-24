@@ -10,6 +10,9 @@ namespace WatchFace.Parser.Elements.DateElements
 
         // TODO: Looks like here should be Id 2 also
 
+        [ParameterId(2)]
+        public ImageSet MonthName { get; set; }
+
         [ParameterId(3)]
         public Number Day { get; set; }
     }

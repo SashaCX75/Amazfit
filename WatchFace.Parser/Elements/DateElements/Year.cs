@@ -5,7 +5,7 @@ namespace WatchFace.Parser.Elements.DateElements
 {
     public class Year
     {
-        [ParameterId(2)]
+        [ParameterId(1)]
         public OneLineYear OneLine { get; set; }
     }
 }

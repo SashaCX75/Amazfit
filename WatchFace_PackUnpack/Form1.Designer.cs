@@ -39,6 +39,7 @@
             this.checkBox_Watchface_Path = new System.Windows.Forms.CheckBox();
             this.button_unpack = new System.Windows.Forms.Button();
             this.button_pack = new System.Windows.Forms.Button();
+            this.label_version = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -153,11 +154,22 @@
             this.button_pack.UseVisualStyleBackColor = true;
             this.button_pack.Click += new System.EventHandler(this.button_pack_Click);
             // 
+            // label_version
+            // 
+            this.label_version.AutoSize = true;
+            this.label_version.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_version.Location = new System.Drawing.Point(198, 2);
+            this.label_version.Name = "label_version";
+            this.label_version.Size = new System.Drawing.Size(14, 7);
+            this.label_version.TabIndex = 5;
+            this.label_version.Text = "0.0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(224, 162);
+            this.Controls.Add(this.label_version);
             this.Controls.Add(this.button_pack);
             this.Controls.Add(this.button_unpack);
             this.Controls.Add(this.checkBox_Watchface_Path);
@@ -169,13 +181,14 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Распаковка/упаковка циферблатов";
+            this.Text = "Распаковка циферблатов GTR";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -191,6 +204,7 @@
         private System.Windows.Forms.Button button_unpack;
         private System.Windows.Forms.Button button_pack;
         private System.Windows.Forms.RadioButton radioButton_gts;
+        private System.Windows.Forms.Label label_version;
     }
 }
 

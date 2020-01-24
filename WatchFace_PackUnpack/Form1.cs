@@ -90,6 +90,7 @@ namespace WatchFace_PackUnpack
                 {
                     string fullfilename = openFileDialog.FileName;
                     string filename = Path.GetFileName(fullfilename);
+                    filename = filename.Replace(" ", "_");
                     string fullPath = subPath + filename;
                     // если файл существует
                     if (File.Exists(fullPath))
@@ -631,6 +632,10 @@ namespace WatchFace_PackUnpack
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label_version.Text = "v " +
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." +
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
+
             Load_Settings = true;
             if (Program_Settings.Model_GTS)
             {

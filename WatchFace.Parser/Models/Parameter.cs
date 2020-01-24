@@ -97,6 +97,12 @@ namespace WatchFace.Parser.Models
             if (id == 0)
                 throw new ArgumentException("Parameter with zero Id is invalid.");
 
+            if (id == 17 || id == 18)
+            {
+                long Position = fileStream.Position;
+                fileStream.Position = Position + 1;
+            }
+    
             var value = ReadValue(fileStream);
             if (flags.HasFlag(ParameterFlags.HasChildren))
             {
@@ -137,7 +143,8 @@ namespace WatchFace.Parser.Models
         {
             var currentByte = stream.ReadByte();
             if (currentByte == -1)
-                throw new ArgumentException("Reading buffer is empty.");
+                //throw new ArgumentException("Reading buffer is empty.");
+                return 0;
             return (byte) currentByte;
         }
 
