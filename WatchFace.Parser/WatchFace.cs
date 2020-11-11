@@ -40,5 +40,9 @@ namespace WatchFace.Parser
 
         [ParameterId(15)]
         public DaysProgress DaysProgress { get; set; }
+
+
+        [ParameterId(16)]
+        public Shortcuts Shortcuts { get; set; }
     }
 }

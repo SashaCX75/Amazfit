@@ -24,7 +24,7 @@ namespace WatchFace.Parser.Elements.AnimationElements
         public long SpeedAnimation { get; set; }
 
         [ParameterId(6)]
-        public long Unknown4 { get; set; }
+        public long TimeAnimation { get; set; }
 
         [ParameterId(7)]
         public long Unknown5 { get; set; }

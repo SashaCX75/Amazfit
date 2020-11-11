@@ -53,6 +53,7 @@ namespace Resources.Image
             _height = (ushort)_reader.ReadUInt32();
             _rowLengthInBytes = (ushort)(_reader.ReadUInt32() * _width/8);
             _bitsPerPixel = (ushort)_reader.ReadUInt32();
+            if (_bitsPerPixel == 0) _bitsPerPixel = 24;
             //_paletteColors = (ushort)_reader.ReadUInt32();
             _paletteColors = 0;
             _transparency = _reader.ReadUInt32() > 0;

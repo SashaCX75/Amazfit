@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\Shortcuts.cs" />
     <Compile Include="Elements\Activity.cs" />
     <Compile Include="Elements\ActivityElements\PulseGraph.cs" />
     <Compile Include="Elements\ActivityElements\CaloriesGraph.cs" />
@@ -90,6 +91,8 @@
     <Compile Include="Elements\DateElements\MonthAndDay.cs" />
     <Compile Include="Elements\DateElements\OneLineMonthAndDay.cs" />
     <Compile Include="Elements\DateElements\SeparateMonthAndDay.cs" />
+    <Compile Include="Elements\ShortcutElements\Rectangle.cs" />
+    <Compile Include="Elements\ShortcutElements\Shortcut.cs" />
     <Compile Include="Elements\StepsProgress.cs" />
     <Compile Include="Elements\Status.cs" />
     <Compile Include="Elements\StatusElements\Switch.cs" />

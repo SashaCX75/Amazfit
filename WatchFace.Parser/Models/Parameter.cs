@@ -97,13 +97,17 @@ namespace WatchFace.Parser.Models
             if (id == 0)
                 throw new ArgumentException("Parameter with zero Id is invalid.");
 
-            if (id == 17 || id == 18)
+            if (id == 16 || id == 17 || id == 18)
             {
                 long Position = fileStream.Position;
                 fileStream.Position = Position + 1;
             }
-    
+
             var value = ReadValue(fileStream);
+            //if ((value < 2 || value == null) && flags.HasFlag(ParameterFlags.HasChildren))
+            //{
+            //    value = ReadValue(fileStream);
+            //}
             if (flags.HasFlag(ParameterFlags.HasChildren))
             {
                 Logger.Trace(() => TraceWithOffset($"{id} ({rawId:X2}): {value} bytes", traceOffset));
