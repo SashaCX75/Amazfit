@@ -40,6 +40,7 @@
             this.button_unpack = new System.Windows.Forms.Button();
             this.button_pack = new System.Windows.Forms.Button();
             this.label_version = new System.Windows.Forms.Label();
+            this.radioButton_amazfitx = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -79,12 +80,13 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.radioButton_amazfitx);
             this.panel2.Controls.Add(this.radioButton_gts);
             this.panel2.Controls.Add(this.radioButton_gtr42);
             this.panel2.Controls.Add(this.radioButton_gtr47);
             this.panel2.Location = new System.Drawing.Point(12, 63);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 26);
+            this.panel2.Size = new System.Drawing.Size(200, 46);
             this.panel2.TabIndex = 1;
             // 
             // radioButton_gts
@@ -126,7 +128,7 @@
             // 
             this.checkBox_Watchface_Path.Checked = true;
             this.checkBox_Watchface_Path.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Watchface_Path.Location = new System.Drawing.Point(12, 95);
+            this.checkBox_Watchface_Path.Location = new System.Drawing.Point(12, 115);
             this.checkBox_Watchface_Path.Name = "checkBox_Watchface_Path";
             this.checkBox_Watchface_Path.Size = new System.Drawing.Size(200, 34);
             this.checkBox_Watchface_Path.TabIndex = 2;
@@ -136,7 +138,7 @@
             // 
             // button_unpack
             // 
-            this.button_unpack.Location = new System.Drawing.Point(12, 135);
+            this.button_unpack.Location = new System.Drawing.Point(12, 155);
             this.button_unpack.Name = "button_unpack";
             this.button_unpack.Size = new System.Drawing.Size(90, 23);
             this.button_unpack.TabIndex = 3;
@@ -146,7 +148,7 @@
             // 
             // button_pack
             // 
-            this.button_pack.Location = new System.Drawing.Point(122, 135);
+            this.button_pack.Location = new System.Drawing.Point(122, 155);
             this.button_pack.Name = "button_pack";
             this.button_pack.Size = new System.Drawing.Size(90, 23);
             this.button_pack.TabIndex = 4;
@@ -164,11 +166,22 @@
             this.label_version.TabIndex = 5;
             this.label_version.Text = "0.0";
             // 
+            // radioButton_amazfitx
+            // 
+            this.radioButton_amazfitx.AutoSize = true;
+            this.radioButton_amazfitx.Location = new System.Drawing.Point(4, 27);
+            this.radioButton_amazfitx.Name = "radioButton_amazfitx";
+            this.radioButton_amazfitx.Size = new System.Drawing.Size(69, 17);
+            this.radioButton_amazfitx.TabIndex = 4;
+            this.radioButton_amazfitx.Text = "Amazfit X";
+            this.radioButton_amazfitx.UseVisualStyleBackColor = true;
+            this.radioButton_amazfitx.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 162);
+            this.ClientSize = new System.Drawing.Size(224, 182);
             this.Controls.Add(this.label_version);
             this.Controls.Add(this.button_pack);
             this.Controls.Add(this.button_unpack);
@@ -205,6 +218,7 @@
         private System.Windows.Forms.Button button_pack;
         private System.Windows.Forms.RadioButton radioButton_gts;
         private System.Windows.Forms.Label label_version;
+        private System.Windows.Forms.RadioButton radioButton_amazfitx;
     }
 }
 

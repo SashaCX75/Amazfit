@@ -97,7 +97,7 @@ namespace WatchFace.Parser.Models
             if (id == 0)
                 throw new ArgumentException("Parameter with zero Id is invalid.");
 
-            if (id == 16 || id == 17 || id == 18)
+            if (id > 16)
             {
                 long Position = fileStream.Position;
                 fileStream.Position = Position + 1;

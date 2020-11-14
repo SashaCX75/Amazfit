@@ -664,6 +664,7 @@ namespace WatchFace_PackUnpack
             Program_Settings.Model_GTR47 = radioButton_gtr47.Checked;
             Program_Settings.Model_GTR42 = radioButton_gtr42.Checked;
             Program_Settings.Model_GTS = radioButton_gts.Checked;
+            Program_Settings.Model_AmazfitX = radioButton_amazfitx.Checked;
 
             Program_Settings.Color1 = radioButton_color1.Checked;
             Program_Settings.Color2 = radioButton_color2.Checked;
@@ -706,6 +707,13 @@ namespace WatchFace_PackUnpack
 
                 Model.modelByte = new byte[8] { 0x2e, 0x00, 0xaa, 0xeb, 0x00, 0x00, 0x68, 0xf1 }; // gtr 47
             }
+            else if (Program_Settings.Model_AmazfitX)
+            {
+                CenterOffset.X = 103;
+                CenterOffset.Y = 320;
+
+                Model.modelByte = new byte[8] { 0x35, 0x00, 0x09, 0x00, 0x00, 0x00, 0x4b, 0x9a }; // Amazfit X
+            }
 
             if (Program_Settings.Color1) ColorType.colorType = 1;
             else ColorType.colorType = 2;
@@ -735,6 +743,7 @@ namespace WatchFace_PackUnpack
         public bool Model_GTR47 = true;
         public bool Model_GTR42 = false;
         public bool Model_GTS = false;
+        public bool Model_AmazfitX = false;
 
         public bool Color1 = true;
         public bool Color2 = false;

@@ -51,12 +51,16 @@ namespace Resources.Image
             //byte[] b1 = _reader.ReadBytes(50);
             _width = (ushort)_reader.ReadUInt32();
             _height = (ushort)_reader.ReadUInt32();
-            _rowLengthInBytes = (ushort)(_reader.ReadUInt32() * _width/8);
+            //_rowLengthInBytes = (ushort)(_reader.ReadUInt32() * _width/8);
             _bitsPerPixel = (ushort)_reader.ReadUInt32();
-            if (_bitsPerPixel == 0) _bitsPerPixel = 24;
+            ushort _temp = (ushort)_reader.ReadUInt32();
+            if (_bitsPerPixel == 32) _temp = (ushort)_reader.ReadUInt32();
+            _rowLengthInBytes = (ushort)(_bitsPerPixel * _width / 8);
+            //if (_bitsPerPixel == 0) _bitsPerPixel = 24;
             //_paletteColors = (ushort)_reader.ReadUInt32();
             _paletteColors = 0;
-            _transparency = _reader.ReadUInt32() > 0;
+            _transparency = _reader.ReadUInt32() == 0;
+            //if(_transparency) _paletteColors = 0;
             //if (_transparency && _bitsPerPixel<=24) _bitsPerPixel = (ushort)(_bitsPerPixel + 8);
             Logger.Trace("Image header was read:");
             Logger.Trace("Width: {0}, Height: {1}, RowLength: {2}", _width, _height, _rowLengthInBytes);
@@ -140,32 +144,7 @@ namespace Resources.Image
             return image;
         }
 
-        private Bitmap Read16BitImage()
-        {
-            var image = new Bitmap(_width, _height);
-            using (var context = image.CreateUnsafeContext())
-            {
-                for (var y = 0; y < _height; y++)
-                {
-                    var rowBytes = _reader.ReadBytes(_rowLengthInBytes);
-                    var bitReader = new BitReader(rowBytes);
-                    for (var x = 0; x < _width; x++)
-                    {
-                        var firstByte = (int)bitReader.ReadByte();
-                        var secondByte = (int)bitReader.ReadByte();
-                        var b = (byte)((secondByte >> 3) & 0x1f) << 3;
-                        var g = (byte)(((firstByte >> 5) & 0x7) | ((secondByte & 0x07) << 3)) << 2;
-                        var r = (byte)(firstByte & 0x1f) << 3;
-                        var color = Color.FromArgb(0xff, r, g, b);
-                        context.SetPixel(x, y, color);
-                    }
-                }
-            }
-
-            return image;
-        }
-
-        //private Bitmap Read24BitImage()
+        //private Bitmap Read16BitImage()
         //{
         //    var image = new Bitmap(_width, _height);
         //    using (var context = image.CreateUnsafeContext())
@@ -176,20 +155,73 @@ namespace Resources.Image
         //            var bitReader = new BitReader(rowBytes);
         //            for (var x = 0; x < _width; x++)
         //            {
-        //                var alpha = (int)bitReader.ReadByte();
-        //                var b = (int)(bitReader.ReadBits(5) << 3);
-        //                var g = (int)(bitReader.ReadBits(6) << 2);
-        //                var r = (int)(bitReader.ReadBits(5) << 3);
-        //                var color = Color.FromArgb(0xff - alpha, r, g, b);
+        //                var firstByte = (int)bitReader.ReadByte();
+        //                var secondByte = (int)bitReader.ReadByte();
+        //                var b = (byte)((secondByte >> 3) & 0x1f) << 3;
+        //                var g = (byte)(((firstByte >> 5) & 0x7) | ((secondByte & 0x07) << 3)) << 2;
+        //                var r = (byte)(firstByte & 0x1f) << 3;
+        //                var color = Color.FromArgb(0xff, r, g, b);
         //                context.SetPixel(x, y, color);
         //            }
         //        }
         //    }
 
-        //    return image;
-        //}
+        private Bitmap Read16BitImage()
+        {
+            var image = new Bitmap(_width, _height);
+            using (var context = image.CreateUnsafeContext())
+            {
+                for (var y = 0; y < _height; y++)
+                {
+                    var rowBytes = _reader.ReadBytes(_rowLengthInBytes);
+                    for (var x = 0; x < _width; x++)
+                    {
+                        try
+                        {
+                            var firstByte = rowBytes[x * 2];
+                            var secondByte = rowBytes[x * 2 + 1];
+                            var r = (byte)((secondByte >> 3) & 0x1f) << 3;
+                            var g = (byte)(((firstByte >> 5) & 0x7) | ((secondByte & 0x07) << 3)) << 2;
+                            var b = (byte)(firstByte & 0x1f) << 3;
+                            var color = Color.FromArgb(0xff, r, g, b);
+                            context.SetPixel(x, y, color);
+                        }
+                        catch (System.Exception)
+                        {
+                        }
+                    }
+                }
+            }
+
+            return image;
+        }
+
 
         private Bitmap Read24BitImage()
+        {
+            var image = new Bitmap(_width, _height);
+            using (var context = image.CreateUnsafeContext())
+            {
+                for (var y = 0; y < _height; y++)
+                {
+                    var rowBytes = _reader.ReadBytes(_rowLengthInBytes);
+                    var bitReader = new BitReader(rowBytes);
+                    for (var x = 0; x < _width; x++)
+                    {
+                        var alpha = (int)bitReader.ReadByte();
+                        var b = (int)(bitReader.ReadBits(5) << 3);
+                        var g = (int)(bitReader.ReadBits(6) << 2);
+                        var r = (int)(bitReader.ReadBits(5) << 3);
+                        var color = Color.FromArgb(0xff - alpha, r, g, b);
+                        context.SetPixel(x, y, color);
+                    }
+                }
+            }
+
+            return image;
+        }
+
+        private Bitmap Read32BitImage()
         {
             var image = new Bitmap(_width, _height);
             using (var context = image.CreateUnsafeContext())
@@ -225,30 +257,5 @@ namespace Resources.Image
             return image;
         }
 
-        private Bitmap Read32BitImage()
-        {
-            var image = new Bitmap(_width, _height);
-            using (var context = image.CreateUnsafeContext())
-            {
-                for (var y = 0; y < _height; y++)
-                {
-                    var rowBytes = _reader.ReadBytes(_rowLengthInBytes);
-                    for (var x = 0; x < _width; x++)
-                    {
-                        //var r = rowBytes[x * 4];
-                        //var g = rowBytes[x * 4 + 1];
-                        //var b = rowBytes[x * 4 + 2];
-                        var g = rowBytes[x * 4];
-                        var r = rowBytes[x * 4 + 1];
-                        var alpha = rowBytes[x * 4 + 2];
-                        var b = rowBytes[x * 4 + 3];
-                        var color = Color.FromArgb(alpha, r, g, b);
-                        context.SetPixel(x, y, color);
-                    }
-                }
-            }
-
-            return image;
-        }
     }
 }

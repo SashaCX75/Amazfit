@@ -65,5 +65,11 @@ namespace WatchFace.Parser.Elements
 
         [ParameterId(18)]
         public PulseGraph PulseGraph { get; set; } // нет данных
+
+        [ParameterId(19)]
+        public Number Unknown1 { get; set; } //PAI
+
+        [ParameterId(21)]
+        public Number PAI { get; set; } //PAI
     }
 }
